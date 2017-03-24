@@ -29,7 +29,7 @@ class MediaPickerManager: NSObject {
             imagePickerController.sourceType = .camera
             imagePickerController.cameraDevice = .front
         } else {
-            imagePickerController.sourceType = .photoLibrary
+           // imagePickerController.sourceType = .photoLibrary
         }
         
         imagePickerController.mediaTypes = [kUTTypeImage as String]

@@ -57,7 +57,7 @@ class PhotoListController: UIViewController {
 // MARK: - MediaPickerManagerDelegate
 extension PhotoListController: MediaPickerManagerDelegate {
     func mediaPickerManager(manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
-        //
+        
     }
 }
 
