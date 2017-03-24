@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF2229EB1E857181003B905A /* MediaPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2229EA1E857180003B905A /* MediaPickerManager.swift */; };
 		BFECB0011E7C580900B2E67F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECB0001E7C580900B2E67F /* AppDelegate.swift */; };
 		BFECB0031E7C580900B2E67F /* PhotoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECB0021E7C580900B2E67F /* PhotoListController.swift */; };
 		BFECB0081E7C580900B2E67F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECB0071E7C580900B2E67F /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF2229EA1E857180003B905A /* MediaPickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPickerManager.swift; sourceTree = "<group>"; };
 		BFECAFFD1E7C580900B2E67F /* PhotoEffects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEffects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFECB0001E7C580900B2E67F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFECB0021E7C580900B2E67F /* PhotoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				BFECB0001E7C580900B2E67F /* AppDelegate.swift */,
 				BFECB0021E7C580900B2E67F /* PhotoListController.swift */,
+				BF2229EA1E857180003B905A /* MediaPickerManager.swift */,
 				BFECB0071E7C580900B2E67F /* Assets.xcassets */,
 				BFECB0091E7C580900B2E67F /* LaunchScreen.storyboard */,
 				BFECB00C1E7C580900B2E67F /* Info.plist */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF2229EB1E857181003B905A /* MediaPickerManager.swift in Sources */,
 				BFECB0031E7C580900B2E67F /* PhotoListController.swift in Sources */,
 				BFECB0011E7C580900B2E67F /* AppDelegate.swift in Sources */,
 			);
@@ -500,6 +504,7 @@
 				BFECB0271E7C580A00B2E67F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFECB0281E7C580A00B2E67F /* Build configuration list for PBXNativeTarget "PhotoEffectsTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +513,7 @@
 				BFECB02A1E7C580A00B2E67F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFECB02B1E7C580A00B2E67F /* Build configuration list for PBXNativeTarget "PhotoEffectsUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +522,7 @@
 				BFECB02D1E7C580A00B2E67F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
