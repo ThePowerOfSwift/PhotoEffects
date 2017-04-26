@@ -30,7 +30,7 @@ class MediaPickerManager: NSObject {
         self.presentingViewController = presentingViewController
         super.init()
         
-        //        imagePickerController.delegate = self
+        imagePickerController.delegate = self
         // if camera is available (not in simulator)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePickerController.sourceType = .camera

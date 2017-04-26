@@ -16,7 +16,8 @@ class PhotoListController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Camera", for: UIControlState())
         button.tintColor = .white
-        button.backgroundColor = UIColor(red: 254/255.0, green: 123/255.0, blue: 135/255.0, alpha: 1.0)
+        //button.backgroundColor = UIColor(red: 254/255.0, green: 123/255.0, blue: 135/255.0, alpha: 1.0)
+        button.backgroundColor = UIColor(red: 40/255.0, green: 132/255.0, blue: 205/255.0, alpha: 1.0)
         
         // button is tapped and it executes a method
         button.addTarget(self, action: #selector(PhotoListController.presentImagePickerController), for: .touchUpInside)
@@ -30,6 +31,8 @@ class PhotoListController: UIViewController {
         manager.delegate = self
         return manager
     }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,19 @@ class PhotoListController: UIViewController {
 extension PhotoListController: MediaPickerManagerDelegate {
     func mediaPickerManager(_ manager: MediaPickerManager, didFinishPickingImage image: UIImage) {
         // taking selected photo and building some functionality to filter an image
+        
+        // using OpenGL for faster loading
+        let eaglContext = EAGLContext(api: .openGLES2)
+        let ciContext = CIContext(eaglContext: eaglContext!)
+        
+        // image selected
+        let photoFilterController = PhotoFilterController(image: image, context: ciContext, eaglContext: eaglContext!)
+        
+        // when image is selected, moving forward to photoFilterController
+        let navigationController = UINavigationController(rootViewController: photoFilterController)
+        manager.dismissImagePickerController(animated: true) {
+            self.present(navigationController, animated: true, completion: nil)
+        }
     }
 }
 

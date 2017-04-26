@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else { return false }
         
-        window.backgroundColor = .white
+        window.backgroundColor = .black
         
         // photoListController is the root VC of navigationController
         let photoListController = PhotoListController()
