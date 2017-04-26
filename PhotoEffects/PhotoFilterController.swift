@@ -170,6 +170,8 @@ extension PhotoFilterController {
     }
     
     @objc fileprivate func presentMetadataController() {
-        
+        // controller with metadata
+        let photoMetadataController = PhotoMetadataController(photo: self.mainImage)
+        self.navigationController?.pushViewController(photoMetadataController, animated: true)
     }
 }
