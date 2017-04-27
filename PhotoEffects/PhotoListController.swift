@@ -32,20 +32,49 @@ class PhotoListController: UIViewController {
         return manager
     }()
     
+    // loading saved photos
+    lazy var dataSource: PhotoDataSource = {
+        return PhotoDataSource(fetchRequest: Photo.allPhotosRequest, collectionView: self.collectionView)
+    }()
     
+    // collection view with fetched (Core Data) photos
+    lazy var collectionView: UICollectionView = {
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        
+        let screenWidth = UIScreen.main.bounds.size.width
+        let paddingDistance: CGFloat = 10.0
+        let itemSize = (screenWidth - paddingDistance)/2.0
+        
+        collectionViewLayout.itemSize = CGSize(width: itemSize, height: itemSize)
+        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = .black
+        collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
+        
+        return collectionView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // to fill collection view with photos and adjust spacing
+        collectionView.dataSource = dataSource
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     // MARK: - Layout
     
     override func viewWillLayoutSubviews() {
+        view.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(cameraButton)
         cameraButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             cameraButton.leftAnchor.constraint(equalTo: view.leftAnchor),
             cameraButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             cameraButton.rightAnchor.constraint(equalTo: view.rightAnchor),

@@ -166,6 +166,12 @@ extension PhotoMetadataController {
 extension PhotoMetadataController {
     @objc fileprivate func savePhotoWithMetadata() {
         
+        // saving photo with location and dags using Core Data
+        let tags = tagsFromTextField()
+        Photo.photoWith(photo, tags: tags, location: location)
+        
+        CoreDataController.save()
+        dismiss(animated: true, completion: nil)
     }
 }
 
