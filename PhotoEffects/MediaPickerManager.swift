@@ -35,7 +35,7 @@ class MediaPickerManager: NSObject {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePickerController.sourceType = .camera
             // for front camera
-            imagePickerController.cameraDevice = .front
+            imagePickerController.cameraDevice = .rear
         } else {
             // else use photo library
             imagePickerController.sourceType = .photoLibrary

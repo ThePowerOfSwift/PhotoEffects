@@ -32,6 +32,7 @@ class PhotoFilterController: UIViewController {
     fileprivate lazy var filterHeaderLabel: UILabel = {
         let label = UILabel()
         label.text = "Select a filter"
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
