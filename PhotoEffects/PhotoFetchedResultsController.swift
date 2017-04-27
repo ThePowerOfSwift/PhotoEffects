@@ -31,6 +31,15 @@ class PhotoFetchedResultsController: NSFetchedResultsController<NSFetchRequestRe
         }
     }
     
+    // call this method every time when dismissing the sort controller
+    func performFetch(withPredicate predicate: NSPredicate?) {
+        // deleting all the cache
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
+        fetchRequest.predicate = predicate
+        // go get the new data
+        executeFetch()
+    }
+    
     // MARK: - NSFetchedResultsControllerDelegate
     
     // when the content is changed - reload collection view

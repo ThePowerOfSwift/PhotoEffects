@@ -56,6 +56,8 @@ class PhotoListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationBar()
         // to fill collection view with photos and adjust spacing
         collectionView.dataSource = dataSource
         self.automaticallyAdjustsScrollViewInsets = false
@@ -109,6 +111,53 @@ extension PhotoListController: MediaPickerManagerDelegate {
         manager.dismissImagePickerController(animated: true) {
             self.present(navigationController, animated: true, completion: nil)
         }
+    }
+}
+
+// MARK: - Navigation
+extension PhotoListController {
+    
+    fileprivate func setupNavigationBar() {
+        // button for sorting
+        let sortTagsButton = UIBarButtonItem(title: "Tags", style: .plain, target: self, action: #selector(PhotoListController.presentSortController))
+        // to pass more that one bar button item
+        navigationItem.setRightBarButtonItems([sortTagsButton], animated: true)
+    }
+    
+    @objc fileprivate func presentSortController() {
+        
+        // getting all tags by generic type "Tag"
+        let tagDataSource = SortableDataSource<Tag>(fetchRequest: Tag.allTagsRequest, managedObjectContext: CoreDataController.sharedInstance.managedObjectContext)
+        
+        let sortItemSelector = SortItemSelector(sortItems: tagDataSource.results)
+        
+        let sortController = PhotoSortListController(dataSource: tagDataSource, sortItemSelector: sortItemSelector)
+        
+        sortController.onSortSelection = { checkedItems in
+            
+            // NSPredicate for search and filtering fetched data
+            if !checkedItems.isEmpty {
+                
+                var predicates = [NSPredicate]()
+                // grab each tag and create a predicate from it
+                for tag in checkedItems {
+                    // tags.tigle is the keypath to the photos entity. It's going to filter on entity photos.tags.title. %K - keypath
+                    let predicate = NSPredicate(format: "%K CONTAINS %@", "tags.title", tag.title)
+                    predicates.append(predicate)
+                }
+                
+                // compoundPredicate is a series of predicates with a rule of how to deal with subpredicates
+                // this means that photos that match any of the tags individually will be included in the result set 
+                let compoundPredicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
+                self.dataSource.performFetch(withPredicate: compoundPredicate)
+            } else {
+                self.dataSource.performFetch(withPredicate: nil)
+            }
+        }
+        
+        let navigationController = UINavigationController(rootViewController: sortController)
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
 

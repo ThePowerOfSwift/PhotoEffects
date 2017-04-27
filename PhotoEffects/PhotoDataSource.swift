@@ -25,6 +25,12 @@ class PhotoDataSource: NSObject {
         
         super.init()
     }
+    
+    // call this method every time when dismissing the sort controller
+    func performFetch(withPredicate predicate: NSPredicate?) {
+        self.fetchedResultsController.performFetch(withPredicate: predicate)
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDataSource
