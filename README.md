@@ -1,12 +1,18 @@
+[![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat
+)](https://www.apple.com/ios/ios-10/)
+[![Swift Version](https://img.shields.io/badge/swift-3.0-yellow.svg?style=flat)](https://swift.org)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://mit-license.org)
+
 # PhotoEffects
-### Applying effects to user's photos
+
+### Applying filters to user's photos. Saving with Core Data. 
 
 Приложение позволяет применять разные фильтры к сделанным фотографиям и сохранять получившийся результат. Возможно добавление location и tags с возможностью дальнейшей фильтрации. 
 Можно использовать как камеру, так и user’s photo library (в случае если камера недоступна).
 
 <p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/23423988/25494429/471697ec-2b82-11e7-9fe4-d26886f0b73e.jpg" alt="Image") />
-  <img src="https://cloud.githubusercontent.com/assets/23423988/25494426/471056ac-2b82-11e7-94a6-db2ed72a01c9.png" alt="Image") />
+  <img src="https://cloud.githubusercontent.com/assets/23423988/25774650/767c9574-329c-11e7-9250-6076b545ea52.jpg" alt="Image") />
+  <img src="https://cloud.githubusercontent.com/assets/23423988/25774651/76a5d56a-329c-11e7-89c3-fb09a368af93.png" alt="Image") />
 </p>
 
 Если пользователь выбрал камеру, то сделав снимок (с фронтальной либо основной), осуществляется переход на экран выбора фильтров, каждый из которых сразу отражается на исходном изображении.  
@@ -15,13 +21,13 @@
   <img src="https://cloud.githubusercontent.com/assets/23423988/25494427/47132954-2b82-11e7-8be9-2cb7f234f2dd.png" alt="Image") />
 </p>
 
-После выбора фильтра осуществляется переход на экран с метаданными к фотографии: местоположение (Core Location, на усмотрение пользователя) и tag для каждой фотографии (с целью облегчения дальнейшего поиска).  
+После выбора фильтра осуществляется переход на экран с метаданными к фотографии: местоположение (`CoreLocation`, на усмотрение пользователя) и tag для каждой фотографии (с целью облегчения дальнейшего поиска).  
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/23423988/25494430/4716e864-2b82-11e7-82cd-25bb6f0728f5.png" alt="Image") />
 </p>
 
-После нажатия Save, происходит сохранение данных (using Core Data) - Photo, Location, Tag, Date (когда сделана фотография) и возврат на основной экран. Фотографиями с применёнными фильтрами наполняется Collection View on main screen.  
+После нажатия "Save", происходит сохранение данных (using `CoreData`) - Photo, Location, Tag, Date (когда сделана фотография, `Date` class) и возврат на основной экран. Фотографиями с применёнными фильтрами наполняется `UICollectionView` on main screen.  
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/23423988/25494428/4714ce6c-2b82-11e7-813a-ff8dbfa88ea8.png" alt="Image") />
@@ -34,14 +40,26 @@
   <img src="https://cloud.githubusercontent.com/assets/23423988/25494432/47336886-2b82-11e7-8c8c-efbe208dadb5.png" alt="Image") />
 </p>
 
-#### Использовано 
+## Used  
+
 - Swift 3.0
-- UI programmatically. No Story Board, no .xib files. 
+- UI programmatically. No Story Board, no `.xib` files. 
 - Access to camera and user’s photo library. 
 - Little bit of dependency injection and delegation
-- Core Image CIFilter for applying filters
-- CIContext, EAGLContext
-- Collection View and TalbeView
-- Core Location
-- Core Data saving and fetching
+- `CoreImage` `CIFilter` for applying filters
+- `CIContext`, `EAGLContext`
+- `UICollectionView` and `UITalbeView`
+- `CoreLocation`
+- `CoreData` saving and fetching
 - Sorting fetched results
+  
+## To do
+
+- [x] Search using tags
+- [ ] Additional filters
+- [ ] Fix photo rotation bug
+- [ ] Overall design 
+
+## License
+
+PhotoEffects is available under the MIT license. See the LICENSE file for more info.
